@@ -1,0 +1,2 @@
+require './nonrandomapp'
+run NonRandomApp
