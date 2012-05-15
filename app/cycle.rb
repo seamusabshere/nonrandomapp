@@ -5,8 +5,11 @@ class Cycle
   attr_reader :size
   attr_reader :redis_key
 
-  def initialize(id, options = {})
-    @id = id
+  def initialize(proto_id, options = {})
+    @id = proto_id.to_s.strip
+    unless id.length > 1
+      raise ArgumentError, %{id #{id.inspect} is not valid}
+    end
     @size = options.has_key?('size') ? options['size'].to_i : INFINITY
     @redis_key = "Cycle/#{id}"
   end
