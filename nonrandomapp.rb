@@ -3,6 +3,8 @@ require 'sinatra/base'
 require 'redis'
 require 'lock_method'
 
+ENV['REDIS_URL'] ||= ENV['REDISTOGO_URL']
+
 $redis = Redis.new
 LockMethod.config.storage = $redis
 
