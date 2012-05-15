@@ -2,19 +2,19 @@ class Cycle
   INFINITY = 1.0/0
 
   attr_reader :id
-  attr_reader :max
+  attr_reader :size
   attr_reader :redis_key
 
   def initialize(id, options = {})
     @id = id
-    @max = options[:max] || INFINITY
+    @size = options.has_key?('size') ? options['size'].to_i : INFINITY
     @redis_key = "Cycle/#{id}"
   end
 
   def current
     if $redis.exists redis_key
       memo = $redis.incr redis_key
-      if memo > max
+      if memo >= size
         memo = 0
         $redis.set redis_key, 0
       end

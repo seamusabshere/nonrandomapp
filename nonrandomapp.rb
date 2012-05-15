@@ -14,10 +14,10 @@ require 'sinatra/base'
 
 class NonRandomApp < Sinatra::Base
   get '/' do
-    %{You should try http://#{request.host_with_port}/cycles/YOURSECRET&max=10}
+    %{You should try http://#{request.host_with_port}/cycles/ARBITRARY_ID?size=10}
   end
 
   get '/cycles/:id' do
-    Cycle.new(params[:id], params.slice(:max)).current.to_s
+    Cycle.new(params['id'], params.slice('size')).current.to_s
   end
 end
