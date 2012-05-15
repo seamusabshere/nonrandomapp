@@ -24,7 +24,7 @@ class Cycle
     end
     memo
   end
-  lock_method :current, :spin => true
+  lock_method :current, :spin => true, :ttl => 60
 
   def as_lock
     id
