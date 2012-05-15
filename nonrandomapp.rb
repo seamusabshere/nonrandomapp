@@ -18,6 +18,7 @@ class NonRandomApp < Sinatra::Base
   end
 
   get '/cycles/:id' do
+    content_type 'text/plain'
     Cycle.new(params['id'], params.slice('size')).current.to_s
   end
 end
