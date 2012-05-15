@@ -17,10 +17,6 @@ class NonRandomApp < Sinatra::Base
     %{You should try http://#{request.host_with_port}/cycles/YOURSECRET&max=10}
   end
 
-  get '/rack_env' do
-    ENV['RACK_ENV']
-  end
-
   get '/cycles/:id' do
     Cycle.new(params[:id], params.slice(:max)).current
   end
