@@ -18,6 +18,6 @@ class NonRandomApp < Sinatra::Base
   end
 
   get '/cycles/:id' do
-    Cycle.new(params[:id], params.slice(:max)).current
+    Cycle.new(params[:id], params.slice(:max)).current.to_s
   end
 end
